@@ -5,7 +5,17 @@ import userModel from '../models/userModel.js';
 // Register User
 const registerUser=asyncHandler(async(req,res)=>{
     const {firstname, lastname, email, password}= req.body;
-    const userExists= await userModel.findOne()
+    const userExists= await userModel.findOne({email})
+
+    if(userExists){
+        res.status(400)
+        throw new Error ('User already exist');
+    }
+
+    const user = await userModel.create({
+        firstname, lastname, email, password
+    });
+    
     res.status(200).json({message:"Register User"})
 });
 
