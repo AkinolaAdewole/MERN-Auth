@@ -15,7 +15,15 @@ const registerUser=asyncHandler(async(req,res)=>{
     const user = await userModel.create({
         firstname, lastname, email, password
     });
-    
+
+    if(user){
+        res.status(201).json({
+            _id:user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email
+        })
+    } else{}
     res.status(200).json({message:"Register User"})
 });
 
