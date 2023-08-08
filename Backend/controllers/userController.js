@@ -23,8 +23,10 @@ const registerUser=asyncHandler(async(req,res)=>{
             lastname: user.lastname,
             email: user.email
         })
-    } else{}
-    res.status(200).json({message:"Register User"})
+    } else{
+        res.status(400);
+        throw new Error ('Invalid user data')
+    }
 });
 
 // Auth User and set token
