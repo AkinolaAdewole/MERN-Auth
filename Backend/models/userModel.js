@@ -31,7 +31,10 @@ userSchema.pre('save', async (next)=>{
     if(!this.isModified('password')){
         next();
     }
-})
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password)
+});
 
 const userModel = mongoose.model('userModel', userSchema);
 
