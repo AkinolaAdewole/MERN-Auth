@@ -18,6 +18,9 @@ app.get('/', (req,res)=>{
     res.send('server is ready')
 })
 
+app.use(notFound);
+app.use(errorHandler);
+
 const port = 4200;
 app.listen(port, ()=>{
     console.log(`server running on port ${port}`); 
