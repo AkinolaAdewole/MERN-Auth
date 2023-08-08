@@ -17,13 +17,13 @@ const getUserProfile=asyncHandler(async(req,res)=>{
 });
 
 //@access Private
-const updateUserProfile=asyncHandler(async()=>{
+const updateUserProfile=asyncHandler(async(req,res)=>{
     res.status(200).json({message:"Update User"})
 })
 
 // logout user
 // post
-const logoutUser =asyncHandler(async()=>{
+const logoutUser =asyncHandler(async(req,res)=>{
     res.status(200).json({message:"logout user"})
 })
 export {authUser, registerUser,getUserProfile,updateUserProfile, logoutUser}
