@@ -1,4 +1,6 @@
 import asyncHandler from 'express-async-handler';
+
+
 // Auth User and set token
 // post request 
 const authUser = asyncHandler(async(req,res)=>{
