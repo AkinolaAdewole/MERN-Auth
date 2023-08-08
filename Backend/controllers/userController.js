@@ -67,22 +67,31 @@ const getUserProfile=asyncHandler(async(req,res)=>{
 });
 
 //@access Private
-const updateUserProfile=asyncHandler(async(req,res)=>{
+const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await userModel.findById(req.user._id);
-    if(user){
-        user.fistname = req.body.firstname || user.firstname;
-        user.lastname = req.body.lastname || user.lastname;
-        user.email = req.body.email || user.email; 
-
-        if(req.body.password){
-            user.password = req.body.password;
-        }
-    }else{
-        res.status(404);
-        throw new Error('User not found')
+  
+    if (user) {
+      user.firstname = req.body.firstname || user.firstname;
+      user.lastname = req.body.lastname || user.lastname;
+      user.email = req.body.email || user.email;
+   
+      if (req.body.password) {
+        user.password = req.body.password;
+      }
+  
+      const updatedUser = await user.save();
+  
+      res.json({
+        _id: updatedUser._id,
+        firstname: updatedUser.firstname,
+        lastname: updatedUser.lastname,
+        email: updatedUser.email,
+      });
+    } else {
+      res.status(404);
+      throw new Error('User not found');
     }
-    res.status(200).json({message:"Update User"})
-});
+  });
 
 
 
@@ -92,7 +101,7 @@ const logoutUser =asyncHandler(async(req,res)=>{
     res.cookie('jwt','', {
         httpOnly: true,
         expires: new Date(0)
-    })
+    }) 
     res.status(200).json({message:"user logged out"})
 })
 export {authUser, registerUser,getUserProfile,updateUserProfile, logoutUser}
