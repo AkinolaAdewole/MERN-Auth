@@ -4,7 +4,8 @@ import userModel from '../models/userModel.js';
 
 // Register User
 const registerUser=asyncHandler(async(req,res)=>{
-    console.log(req.body);
+    const {firstname, lastname, email, password}= req.body;
+    const userExists= await userModel.findOne()
     res.status(200).json({message:"Register User"})
 });
 
