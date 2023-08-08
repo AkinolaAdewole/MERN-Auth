@@ -27,15 +27,16 @@ const userSchema=mongoose.Schema({
 });
 
 //before we save
-userSchema.pre('save', async (next)=>{
-    if(!this.isModified('password')){
-        next();
+// Encrypt password using bcrypt
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
+      next();
     }
-
+  
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password)
-});
+    this.password = await bcrypt.hash(this.password, salt);
+  });
 
-const userModel = mongoose.model('userModel', userSchema);
+const userModel = mongoose.model('userModel', userSchema); 
 
-export default userModel;
+export default userModel; 
