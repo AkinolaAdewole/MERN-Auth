@@ -56,13 +56,27 @@ const authUser = asyncHandler(async(req,res)=>{
 
 // @access Private, token is needed
 const getUserProfile=asyncHandler(async(req,res)=>{
-    res.status(200).json({message:"Get Profile"})
+    const user = {
+        _id:req.user._id,
+        firstname:req.user.firstname,
+        lastname:req.user.lastname,
+        email:req.user.email
+
+    }
+    res.status(200).json(user);
 });
 
 //@access Private
 const updateUserProfile=asyncHandler(async(req,res)=>{
+    const user = await userModel.findById(req.user._id);
+    if(user){}else{
+        res.status(404);
+        throw new Error('User not found')
+    }
     res.status(200).json({message:"Update User"})
-})
+});
+
+
 
 // logout user and destroy cookie
 // post
