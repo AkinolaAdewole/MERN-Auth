@@ -38,7 +38,7 @@ const authUser = asyncHandler(async(req,res)=>{
     const {email, password}= req.body
     const user = await userModel.findOne({email});
 
-    if(user){
+    if(user && (await user.matchPassword(password))){
         generateToken(res, user._id)
             res.status(201).json({
             _id:user.id,
@@ -64,9 +64,13 @@ const updateUserProfile=asyncHandler(async(req,res)=>{
     res.status(200).json({message:"Update User"})
 })
 
-// logout user
+// logout user and destroy cookie
 // post
 const logoutUser =asyncHandler(async(req,res)=>{
-    res.status(200).json({message:"logout user"})
+    res.cookie('jwt','', {
+        httpOnly: true,
+        expires: new Date(0)
+    })
+    res.status(200).json({message:"user logged out"})
 })
 export {authUser, registerUser,getUserProfile,updateUserProfile, logoutUser}
