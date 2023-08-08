@@ -69,7 +69,15 @@ const getUserProfile=asyncHandler(async(req,res)=>{
 //@access Private
 const updateUserProfile=asyncHandler(async(req,res)=>{
     const user = await userModel.findById(req.user._id);
-    if(user){}else{
+    if(user){
+        user.fistname = req.body.firstname || user.firstname;
+        user.lastname = req.body.lastname || user.lastname;
+        user.email = req.body.email || user.email; 
+
+        if(req.body.password){
+            user.password = req.body.password;
+        }
+    }else{
         res.status(404);
         throw new Error('User not found')
     }
