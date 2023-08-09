@@ -3,7 +3,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom';
-import { Toast } from 'react-bootstrap';
+import {toast} from 'react-toastify';
 import Loader from '../components/Loader';
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
@@ -31,6 +31,15 @@ const RegisterScreen = () => {
 
   const submitHandler=async(e:any)=>{
     e.preventDefault();
+    if(password !== confirmPassword){
+      toast.error('password do not match')
+    } else{
+      try {
+        const res = await register({firstname, lastname, email, password});
+      } catch (err) {
+        
+      }
+    }
   }
 
   return (
