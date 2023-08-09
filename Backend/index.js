@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -20,12 +21,17 @@ app.use(express.urlencoded({ extended:true }));
 app.use(cookieParser());
 
 app.use('/api/users', userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 app.get('/', (req,res)=>{ 
     res.send('server is ready')
 });
 
-app.use(notFound);
-app.use(errorHandler);
+if(process.env.NODE_ENV === 'production'){
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname,'build')));
+
+}
 
 const port = 4200;
 app.listen(port, ()=>{
