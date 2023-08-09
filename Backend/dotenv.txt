@@ -1,3 +1,4 @@
-NODE_ENV
+NODE_ENV=development
+NODE_ENV=production
 MongoDB_URI
 JWT_SECRET

@@ -27,6 +27,7 @@ app.get('/', (req,res)=>{
     res.send('server is ready')
 });
 
+
 if(process.env.NODE_ENV === 'production'){
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname,'build')));
