@@ -16,7 +16,14 @@ const ProfileScreen = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const dispatch = useDispatch();
-    const {userInfo} = useSelector((state:AppState)=>state.auth)
+    const {userInfo} = useSelector((state:AppState)=>state.auth);
+    const [updateProfile, {isLoading}] = useUpdateUserMutation();
+
+    useEffect(()=>{
+        setFirstname(userInfo.firstname);
+        setLastname(userInfo.lastname);
+        setEmail(userInfo.email);
+    },[userInfo.firstname, userInfo.lastname, userInfo.email]);
 
   return (
     <div>ProfileScreen</div>
