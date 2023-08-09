@@ -4,10 +4,16 @@ import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import{useSelector, useDispatch} from 'react-redux';
 import { AppState } from '../store';
+import { logout } from '../slices/authSlice';
+import { useLogoutMutation } from '../slices/usersApiSlice';
 
 
 const Header = () => {
-  const {userInfo} = useSelector((state:AppState)=>state.auth)
+   
+  const {userInfo} = useSelector((state:AppState)=>state.auth);
+
+  const logoutHandler = async ()=>{}
+
   return (
     <>
       <header>
@@ -28,7 +34,7 @@ const Header = () => {
                            Profile
                         </NavDropdown.Item>
                       </LinkContainer>
-                      
+
                     </NavDropdown>
                     </>
                   ) : (
