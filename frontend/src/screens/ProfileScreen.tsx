@@ -24,6 +24,28 @@ const ProfileScreen = () => {
         setLastname(userInfo.lastname);
         setEmail(userInfo.email);
     },[userInfo.firstname, userInfo.lastname, userInfo.email]);
+    const submitHandler = async (e:any) => {
+        e.preventDefault();
+        if (password !== confirmPassword) {
+          toast.error('Passwords do not match');
+        } else {
+          try {
+            const res = await updateProfile({
+              _id: userInfo._id,
+              firstname,
+              lastname,
+              email,
+              password,
+            }).unwrap();
+            console.log(res);
+            dispatch(setCredentials(res));
+            toast.success('Profile updated successfully');
+          } catch (err:any) {
+            toast.error(err?.data?.message || err.error);
+          }
+        }
+      };
+
 
   return (
     <div>ProfileScreen</div>
