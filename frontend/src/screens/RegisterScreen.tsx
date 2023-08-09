@@ -2,10 +2,12 @@ import React,{useState, useEffect} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Toast } from 'react-bootstrap';
 import Loader from '../components/Loader';
-
+import { useRegisterMutation } from '../slices/usersApiSlice';
+import { setCredentials } from '../slices/authSlice';
+import { AppState } from '../store';
 
 const RegisterScreen = () => {
   const [firstname, setFirstName]= useState('');
@@ -13,6 +15,19 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [register, { isLoading }] = useRegisterMutation();
+
+  const { userInfo} = useSelector((state:AppState)=>state.auth);
+
+  useEffect(()=>{
+    if(userInfo){
+        navigate('/');
+    }
+  },[navigate, userInfo]);
 
   const submitHandler=async(e:any)=>{
     e.preventDefault();
