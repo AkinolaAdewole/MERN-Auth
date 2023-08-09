@@ -22,6 +22,7 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
+      navigate('/login');
     } catch (err) {
       
     }
@@ -48,6 +49,9 @@ const Header = () => {
                         </NavDropdown.Item>
                       </LinkContainer>
 
+                      <NavDropdown.Item onClick={logoutHandler}>
+                        Logout
+                      </NavDropdown.Item>
                     </NavDropdown>
                     </>
                   ) : (
