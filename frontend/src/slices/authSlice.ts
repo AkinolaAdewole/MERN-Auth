@@ -5,15 +5,14 @@ const storedInfo = localStorage.getItem('userInfo');
 
 type INITIALSTATETYPE ={
   
-    userInfo : null | {id: number}
-  
+    userInfo : null | any
  
 }
+
 const initialState:INITIALSTATETYPE ={
   
     userInfo : storedInfo !== null ? JSON.parse(storedInfo)
     : null,
-  
    
 }
 
