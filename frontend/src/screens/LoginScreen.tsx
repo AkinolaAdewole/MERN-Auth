@@ -6,6 +6,7 @@ import FormContainer from '../components/FormContainer'
 import { useLoginMutation } from '../slices/usersApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { AppState } from '../store'
+import {toast} from 'react-toastify'
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');
@@ -28,7 +29,13 @@ const LoginScreen = () => {
     
     const submitHandler= async (e:any)=>{
         e.preventDefault();
-        console.log('submit');
+        try {
+            const res = await login({email, password}).unwrap();
+            dispatch(setCredentials({...res}))
+            navigate('/')
+        } catch (err:any) {
+            toast.error(err?.data?.message || err.error);   
+        }
         
     }
   return (
