@@ -33,7 +33,7 @@ const LoginScreen = () => {
         try {
             const res = await login({email, password}).unwrap();
             dispatch(setCredentials({...res}))
-            navigate('/')
+            navigate('/');
         } catch (err:any) {
             toast.error(err?.data?.message || err.error);   
         }
@@ -65,7 +65,8 @@ const LoginScreen = () => {
                 ></Form.Control>
             </Form.Group>
 
-            <Button type='submit' variant='primary' className='mt-3'>
+            <Button disabled={isLoading}
+              type='submit' variant='primary' className='mt-3'>
                 Sign In
             </Button>
 

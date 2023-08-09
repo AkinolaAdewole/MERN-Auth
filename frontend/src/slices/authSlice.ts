@@ -4,9 +4,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const storedInfo = localStorage.getItem('userInfo');
 
 type INITIALSTATETYPE ={
-  
+
     userInfo : null | any
- 
 }
 
 const initialState:INITIALSTATETYPE ={
@@ -25,7 +24,7 @@ const authSlice = createSlice({
             state.userInfo = action.payload;
             localStorage.setItem('userInfo', JSON.stringify(action.payload));
           },
-          // removing the action parameter from the logout reducer indicate that the action creator doesn't require a payload when called.
+ // removing the action parameter from the logout reducer indicate that the action creator doesn't require a payload when called.
           logout: (state) => {
             state.userInfo = null;
             localStorage.removeItem('userInfo');

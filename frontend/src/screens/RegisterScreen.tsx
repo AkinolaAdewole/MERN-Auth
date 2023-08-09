@@ -35,9 +35,11 @@ const RegisterScreen = () => {
       toast.error('password do not match')
     } else{
       try {
-        const res = await register({firstname, lastname, email, password});
-      } catch (err) {
-        
+        const res = await register({firstname, lastname, email, password}).unwrap();
+        dispatch(setCredentials({...res}));
+        navigate('/');
+      } catch (err:any) {
+        toast.error(err?.data?.message || err.message)
       }
     }
   }
@@ -100,11 +102,12 @@ const RegisterScreen = () => {
            
            {isLoading && <Loader />}
         
+        <Button type='submit' variant='primary' className='mt-3'>
+           Register
+        </Button>
         </Form>
 
-        <Button type='submit' variant='primary' className='mt-3'>
-          Register
-        </Button>
+       
     </FormContainer>
   )
 }

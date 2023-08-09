@@ -24,6 +24,7 @@ const Header = () => {
       dispatch(logout());
       navigate('/login');
     } catch (err) {
+      console.error(err);
       
     }
   }
@@ -42,7 +43,7 @@ const Header = () => {
                 <Nav className='ms-auto'>
                   {userInfo ? (
                     <>
-                    <NavDropdown title={userInfo.name} id='username'>
+                    <NavDropdown title={userInfo.firstname && userInfo.lastname} id='username'>
                       <LinkContainer to='/profile'>
                         <NavDropdown.Item>
                            Profile
@@ -54,6 +55,7 @@ const Header = () => {
                       </NavDropdown.Item>
                     </NavDropdown>
                     </>
+
                   ) : (
                     <>
                      
