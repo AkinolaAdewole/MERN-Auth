@@ -4,12 +4,13 @@ const USERS_URL:unknown='http://localhost:4200/api/users';
 
 export const userApiSlice = apiSlice.injectEndpoints({
     endpoints:(builder)=>({
+
         login: builder.mutation({
             query:(data)=>({
                 url:`${USERS_URL}/auth`,
                 method: 'POST',
                 body: data
-            })
+            }),
         }),
 
         logout: builder.mutation({

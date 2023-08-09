@@ -1,6 +1,10 @@
 import React,{useState, useEffect} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
+import {useDispatch, useSelector} from 'react-redux'
+import { Link } from 'react-router-dom';
+import { Toast } from 'react-bootstrap';
+import Loader from '../components/Loader';
 
 
 const RegisterScreen = () => {
