@@ -9,6 +9,8 @@ const LoginScreen = () => {
     
     const submitHandler= async (e:any)=>{
         e.preventDefault();
+        console.log('submit');
+        
     }
   return (
     <FormContainer>
@@ -39,6 +41,12 @@ const LoginScreen = () => {
             <Button type='submit' variant='primary' className='mt-3'>
                 Sign In
             </Button>
+
+            <Row className='py-3'>
+                <Col>
+                    New Customer? <Link to='/register'>Register</Link>
+                </Col>
+            </Row>
         </Form>
     </FormContainer>
   )
