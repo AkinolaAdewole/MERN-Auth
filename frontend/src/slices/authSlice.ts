@@ -18,14 +18,15 @@ const initialState:INITIALSTATETYPE ={
 
 
 const authSlice = createSlice({
-    name: 'authxxxsss',
+    name: 'auth',
     initialState,
     reducers:{
         setCredentials: (state, action) => {
             state.userInfo = action.payload;
             localStorage.setItem('userInfo', JSON.stringify(action.payload));
           },
-          logout: (state, action) => {
+          // removing the action parameter from the logout reducer indicate that the action creator doesn't require a payload when called.
+          logout: (state) => {
             state.userInfo = null;
             localStorage.removeItem('userInfo');
           },

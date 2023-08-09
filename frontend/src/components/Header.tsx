@@ -6,13 +6,26 @@ import{useSelector, useDispatch} from 'react-redux';
 import { AppState } from '../store';
 import { logout } from '../slices/authSlice';
 import { useLogoutMutation } from '../slices/usersApiSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header = () => {
    
   const {userInfo} = useSelector((state:AppState)=>state.auth);
 
-  const logoutHandler = async ()=>{}
+  const dispatch = useDispatch();
+  const navigate= useNavigate()
+
+  const [logoutApiCall]:any = useLogoutMutation();
+
+  const logoutHandler = async ()=>{
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+    } catch (err) {
+      
+    }
+  }
 
   return (
     <>
