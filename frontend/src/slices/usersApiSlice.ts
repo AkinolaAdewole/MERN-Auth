@@ -1,6 +1,7 @@
 import { apiSlice } from "./apiSlice";
 
-const USERS_URL:unknown='http://localhost:4200/api/users';
+const USERS_URL:string='http://localhost:4200/api/users';
+// const USERS_URL:string= 'https://backend-kappa-brown.vercel.app/api/users'
 
 export const userApiSlice = apiSlice.injectEndpoints({
     endpoints:(builder)=>({

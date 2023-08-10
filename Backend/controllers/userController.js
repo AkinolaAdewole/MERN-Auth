@@ -3,6 +3,10 @@ import userModel from '../models/userModel.js';
 import generateToken from '../utils/token.js';
 
 
+const defaultRoute= asyncHandler(async(req,res)=>{
+    return res.status(200).json({message:'success'})
+})
+
 // Register User
 const registerUser=asyncHandler(async(req,res)=>{
     const {firstname, lastname, email, password}= req.body;
@@ -104,4 +108,4 @@ const logoutUser =asyncHandler(async(req,res)=>{
     }) 
     res.status(200).json({message:"user logged out"})
 })
-export {authUser, registerUser,getUserProfile,updateUserProfile, logoutUser}
+export {authUser, registerUser,getUserProfile,updateUserProfile, logoutUser, defaultRoute}
