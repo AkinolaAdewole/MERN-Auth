@@ -28,11 +28,11 @@ app.get('/', (req,res)=>{
 });
 
 
-if(process.env.NODE_ENV === 'production'){
-    const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname,'build')));
+// if(process.env.NODE_ENV === 'production'){
+//     const __dirname = path.resolve();
+//     app.use(express.static(path.join(__dirname,'build')));
 
-}
+// }
 
 const port = 4200;
 app.listen(port, ()=>{
