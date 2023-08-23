@@ -23,6 +23,7 @@ app.use(cookieParser());
 app.get('/', (req,res)=>{ 
     res.send('server is ready')
 });
+
 app.use('/api/users', userRoutes);
 app.use(notFound);
 app.use(errorHandler);
@@ -35,7 +36,7 @@ app.use(errorHandler);
 
 // }
 
-const port = 4200;
+const port = 4300;
 app.listen(port, ()=>{
     console.log(`server running on port ${port}`); 
 })

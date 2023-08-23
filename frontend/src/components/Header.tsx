@@ -35,7 +35,7 @@ const Header = () => {
           <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
             <Container>
                 <LinkContainer to='/'>
-                   <Navbar.Brand>MERN Auth</Navbar.Brand>
+                   <Navbar.Brand>Akinola Auth-App</Navbar.Brand>
                 </LinkContainer>
 
               <Navbar.Toggle aria-controls='basic-navbar-nav' />
