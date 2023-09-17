@@ -51,7 +51,7 @@ const RegisterScreen = () => {
         <Form onSubmit={submitHandler}>
 
             <Form.Group className='my-2' controlId='firstname'>
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Firstame</Form.Label>
                 <Form.Control
                   type='firstname'
                   placeholder='Enter firstname'
@@ -61,7 +61,7 @@ const RegisterScreen = () => {
             </Form.Group>
 
             <Form.Group className='my-2' controlId='lastname'>
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Lastname</Form.Label>
                  <Form.Control
                      type='lastname'
                       placeholder='Enter lastname'
